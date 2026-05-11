@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MF Alberi — Milano</title>
+<meta name="description" content="Potatura Alberi professionale a Milano. MF Alberi — servizi professionali a Milano. Qualità garantita e preventivo gratuito.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --green:#1A5C6B;
+  --green-mid:#2E9EB5;
+  --green-light:#7ECFDF;
+  --green-pale:#D4F0F5;
+  --accent:#2E9EB5;
+  --accent-dark:#0D3340;
+  --cream:#F8FCFD;
+  --warm:#F4F1EB;
+  --warm2:#EDE8DC;
+  --text:#1C2B1E;
+  --text2:#4A6351;
+  --text3:#7A9B84;
+  --white:#FFFFFF;
+  --radius:12px;
+  --radius2:20px;
+  --shadow:0 2px 24px rgba(45,106,79,0.08);
+  --shadow2:0 12px 48px rgba(45,106,79,0.14);
+  --font-title:'Playfair Display',Georgia,serif;
+  --font-body:'DM Sans',sans-serif;
+  --nav-h:68px;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--font-body);color:var(--text);background:var(--cream);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+img{display:block;width:100%;height:100%;object-fit:cover;font-size:0;color:transparent}
+a{text-decoration:none;color:inherit}
+
+/* ── UTILITY ── */
+.container{max-width:1080px;margin:0 auto;padding:0 28px}
+.section{padding:88px 0}
+.tag{font-size:11px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--accent);margin-bottom:14px;display:flex;align-items:center;gap:8px}
+.tag::before{content:'';width:24px;height:1px;background:var(--accent)}
+.h1{font-family:var(--font-title);font-size:clamp(40px,5.5vw,64px);line-height:1.08;color:var(--text);font-weight:700}
+.h2{font-family:var(--font-title);font-size:clamp(32px,4vw,48px);line-height:1.12;color:var(--text);font-weight:600}
+.h2 em{color:var(--green);font-style:italic}
+.sub{font-size:17px;color:var(--text2);line-height:1.75;font-weight:300}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .65s ease,transform .65s ease}
+.reveal.visible{opacity:1;transform:none}
+
+/* ── NAV ── */
+.nav{position:fixed;top:0;left:0;right:0;z-index:999;height:var(--nav-h);background:rgba(250,250,247,0.95);backdrop-filter:blur(16px);border-bottom:1px solid rgba(45,106,79,0.1);transition:box-shadow .3s}
+.nav.scrolled{box-shadow:0 2px 20px rgba(45,106,79,0.08)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:100%}
+.nav-logo{font-family:var(--font-title);font-size:20px;color:var(--text);font-style:italic}
+.nav-logo span{color:var(--green);font-style:normal;font-weight:700}
+.nav-links{display:flex;gap:36px}
+.nav-links a{font-size:14px;font-weight:500;color:var(--text2);transition:color .2s}
+.nav-links a:hover{color:var(--green)}
+.nav-cta{background:var(--green);color:var(--white);font-family:var(--font-body);font-size:14px;font-weight:600;padding:11px 24px;border-radius:100px;border:none;cursor:pointer;transition:all .2s}
+.nav-cta:hover{background:var(--accent-dark);transform:translateY(-1px)}
+
+/* ── HERO ── */
+.hero{position:relative;min-height:100vh;display:grid;grid-template-columns:1fr 1fr;align-items:center;padding-top:var(--nav-h);overflow:hidden;background:var(--cream)}
+.hero-left{padding:64px 48px 64px calc((100vw - 1080px)/2 + 28px);position:relative;z-index:1}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:10px;background:var(--green-pale);border-radius:100px;padding:6px 16px;font-size:13px;color:var(--green);font-weight:500;margin-bottom:28px}
+.hero-title{font-family:var(--font-title);font-size:clamp(44px,4.5vw,68px);line-height:1.06;color:var(--text);margin-bottom:24px;font-weight:700}
+.hero-title em{color:var(--green);font-style:italic}
+.hero-sub{font-size:18px;color:var(--text2);line-height:1.72;font-weight:300;margin-bottom:40px;max-width:460px}
+.hero-ctas{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:48px}
+.btn{display:inline-flex;align-items:center;gap:8px;font-family:var(--font-body);font-size:15px;font-weight:600;padding:14px 28px;border-radius:100px;border:none;cursor:pointer;transition:all .22s}
+.btn-primary{background:var(--green);color:var(--white)}
+.btn-primary:hover{background:var(--accent-dark);transform:translateY(-2px);box-shadow:0 8px 24px rgba(45,106,79,0.3)}
+.btn-outline{background:transparent;color:var(--green);border:1.5px solid var(--green)}
+.btn-outline:hover{background:var(--green-pale)}
+.hero-trust{display:flex;align-items:center;gap:20px;padding:16px 20px;background:var(--white);border-radius:var(--radius);box-shadow:var(--shadow);width:fit-content}
+.hero-trust-stars{font-size:16px;color:#F59E0B;letter-spacing:1px}
+.hero-trust-text{font-size:13px;color:var(--text2)}
+.hero-trust-text strong{color:var(--text);display:block;font-size:15px}
+.hero-right{position:relative;height:100%;min-height:100vh;overflow:hidden}
+.hero-img{position:absolute;inset:0;overflow:hidden}
+.hero-img img{width:100%;height:100%;object-fit:cover;object-position:center;border-radius:0 0 0 60px;font-size:0}
+.hero-img-overlay{position:absolute;inset:0;background:linear-gradient(to right,var(--cream) 0%,rgba(250,250,247,0) 20%);border-radius:0 0 0 60px}
+.hero-leaf{position:absolute;top:15%;right:-20px;width:160px;height:160px;background:var(--green-pale);border-radius:50%;opacity:.6;filter:blur(40px)}
+.hero-leaf2{position:absolute;bottom:20%;left:-40px;width:200px;height:200px;background:var(--green-pale);border-radius:50%;opacity:.4;filter:blur(60px)}
+
+/* ── STATS ── */
+.stats{background:var(--green);padding:0;text-align:center}
+.stats-inner{display:flex;justify-content:center;gap:0}
+.stat-item{padding:32px 28px;border-right:1px solid rgba(255,255,255,0.15);text-align:center}
+.stat-item:last-child{border-right:none}
+.stat-num{font-family:var(--font-title);font-size:36px;color:var(--white);line-height:1;margin-bottom:4px}
+.stat-lbl{font-size:13px;color:rgba(255,255,255,0.7);font-weight:400}
+
+/* ── SERVIZI ── */
+.services{background:var(--white)}
+.services-header{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:end;margin-bottom:56px}
+.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--warm2);border-radius:var(--radius2);overflow:hidden}
+.service-card{background:var(--white);padding:32px 28px;transition:background .2s}
+.service-card:hover{background:var(--cream)}
+.service-num{font-family:var(--font-title);font-size:48px;color:var(--green-pale);line-height:1;margin-bottom:16px;font-weight:700}
+.service-name{font-size:16px;font-weight:600;color:var(--text);margin-bottom:10px}
+.service-desc{font-size:14px;color:var(--text2);line-height:1.65}
+
+/* ── GALLERIA ── */
+.gallery{background:var(--warm)}
+.gallery-header{margin-bottom:40px}
+.gallery-masonry{display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:240px 240px;gap:14px}
+.gallery-item{border-radius:var(--radius2);overflow:hidden;background:var(--warm2)}
+.gallery-item:first-child{grid-row:span 2}
+.gallery-item img{transition:transform .5s ease}
+.gallery-item:hover img{transform:scale(1.05)}
+
+/* ── PROCESSO ── */
+.process{background:var(--white)}
+.process-header{text-align:center;margin-bottom:64px}
+.process-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:32px;position:relative}
+.process-grid::before{content:'';position:absolute;top:28px;left:10%;right:10%;height:1px;background:var(--warm2);z-index:0}
+.process-step{text-align:center;position:relative;z-index:1}
+.process-num{width:56px;height:56px;border-radius:50%;background:var(--green-pale);border:2px solid var(--green-light);display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-family:var(--font-title);font-size:20px;color:var(--green);font-weight:700;background:var(--white)}
+.process-title{font-size:15px;font-weight:600;color:var(--text);margin-bottom:8px}
+.process-desc{font-size:13px;color:var(--text2);line-height:1.6}
+
+/* ── RECENSIONI ── */
+.reviews{background:var(--cream)}
+.reviews-header{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:40px;flex-wrap:wrap;gap:20px}
+.reviews-score{display:flex;align-items:center;gap:16px;background:var(--white);padding:16px 24px;border-radius:var(--radius);box-shadow:var(--shadow)}
+.reviews-score-num{font-family:var(--font-title);font-size:48px;color:var(--green);line-height:1}
+.reviews-score-detail{font-size:13px;color:var(--text2)}
+.reviews-score-stars{font-size:18px;color:#F59E0B;margin-bottom:2px}
+.reviews-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.review-card{background:var(--white);border-radius:var(--radius2);padding:28px;border:1px solid var(--warm2)}
+.review-quote{font-size:32px;color:var(--green-pale);font-family:var(--font-title);line-height:1;margin-bottom:12px}
+.review-text::before{content:'\201C'}.review-text::after{content:'\201D'}.review-text{font-size:15px;color:var(--text);line-height:1.72;margin-bottom:20px;font-style:italic;font-family:var(--font-title);font-weight:400}
+.review-footer{display:flex;align-items:center;justify-content:space-between}
+.review-author{font-size:13px;font-weight:600;color:var(--text)}
+.review-when{font-size:12px;color:var(--text3)}
+.review-stars{font-size:13px;color:#F59E0B}
+
+/* ── CHI SIAMO ── */
+.about{background:var(--accent-dark);padding:100px 0}
+.about-inner{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.about-img-wrap{position:relative}
+.about-img{border-radius:var(--radius2);overflow:hidden;aspect-ratio:3/4}
+.about-img-badge{position:absolute;bottom:-20px;right:-20px;background:var(--green-mid);border-radius:var(--radius);padding:20px 24px;text-align:center;box-shadow:var(--shadow2)}
+.about-img-badge-num{font-family:var(--font-title);font-size:40px;color:var(--white);line-height:1}
+.about-img-badge-text{font-size:12px;color:rgba(255,255,255,.8);font-weight:500;text-transform:uppercase;letter-spacing:1px}
+.about-text .tag{color:var(--green-light)}
+.about-text .tag::before{background:var(--green-light)}
+.about-text .h2{color:var(--white)}
+.about-text .h2 em{color:var(--green-light)}
+.about-text .sub{color:rgba(255,255,255,.7);margin:20px 0 36px}
+.about-points{display:flex;flex-direction:column;gap:16px}
+.about-point{display:flex;align-items:flex-start;gap:14px;padding:16px 20px;background:rgba(255,255,255,.06);border-radius:var(--radius);border:1px solid rgba(255,255,255,.08)}
+.about-point-check{color:var(--green-light);font-size:16px;margin-top:1px;flex-shrink:0}
+.about-point-title{font-size:14px;font-weight:600;color:var(--white);margin-bottom:3px}
+.about-point-desc{font-size:13px;color:rgba(255,255,255,.6);line-height:1.5}
+
+/* ── CONTATTI ── */
+.contacts{background:var(--white)}
+.contacts-inner{display:grid;grid-template-columns:1fr 1.5fr;gap:56px;align-items:start}
+.contacts-info{display:flex;flex-direction:column;gap:0}
+.contact-block{padding:24px 0;border-bottom:1px solid var(--warm2)}
+.contact-block:first-child{padding-top:0}
+.contact-block:last-child{border-bottom:none}
+.contact-label{font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--text3);margin-bottom:6px}
+.contact-value{font-size:16px;font-weight:500;color:var(--text)}
+.contact-value a{color:var(--green)}
+.contact-value.small{font-size:14px;color:var(--text2);font-weight:400;line-height:1.8}
+.contacts-map{border-radius:var(--radius2);overflow:hidden;height:420px;background:var(--warm);box-shadow:var(--shadow)}
+.contacts-map iframe{width:100%;height:100%;border:none}
+
+/* ── FOOTER ── */
+.footer{background:var(--text);padding:56px 0 28px}
+.footer-inner{display:grid;grid-template-columns:1.6fr 1fr 1fr;gap:48px;margin-bottom:48px}
+.footer-logo{font-family:var(--font-title);font-size:22px;color:var(--white);font-style:italic;margin-bottom:12px}
+.footer-logo span{color:var(--green-mid);font-style:normal}
+.footer-desc{font-size:14px;color:rgba(255,255,255,.45);line-height:1.7}
+.footer-heading{font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:18px}
+.footer-links{display:flex;flex-direction:column;gap:10px}
+.footer-links a{font-size:14px;color:rgba(255,255,255,.55);transition:color .2s}
+.footer-links a:hover{color:var(--white)}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.08);padding-top:24px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.footer-copy{font-size:13px;color:rgba(255,255,255,.3)}
+.footer-legal{display:flex;gap:20px}
+.footer-legal a{font-size:13px;color:rgba(255,255,255,.3);transition:color .2s}
+.footer-legal a:hover{color:rgba(255,255,255,.6)}
+
+/* ── MOBILE BAR ── */
+.mobile-bar{display:none;position:fixed;bottom:0;left:0;right:0;z-index:998;background:var(--white);border-top:1px solid var(--warm2);padding:10px 16px;gap:10px}
+.mobile-bar a{flex:1;display:flex;align-items:center;justify-content:center;gap:8px;padding:13px;border-radius:100px;font-size:14px;font-weight:600}
+.mobile-bar-call{background:var(--green);color:var(--white)}
+.mobile-bar-wa{background:#25D366;color:var(--white)}
+
+/* ── COOKIE ── */
+.cookie{position:fixed;bottom:0;left:0;right:0;z-index:1000;background:var(--text);color:rgba(255,255,255,.8);padding:16px 28px;display:flex;align-items:center;justify-content:space-between;gap:16px;font-size:13px;transform:translateY(100%);transition:transform .4s ease}
+.cookie.show{transform:none}
+.cookie-btn{background:var(--green);color:white;border:none;border-radius:100px;padding:8px 22px;font-size:13px;font-weight:600;cursor:pointer;white-space:nowrap}
+
+/* ── MOBILE ── */
+@media(max-width:768px){
+  .section{padding:56px 0}
+  .nav-links{display:none}
+  .hero{grid-template-columns:1fr;min-height:auto;padding-bottom:48px}
+  .hero-left{padding:40px 0 32px}
+  .hero-right{height:300px;min-height:auto;border-radius:var(--radius2);overflow:hidden;margin:0 -28px}
+  .hero-img{border-radius:0}
+  .hero-img img{border-radius:0}
+  .stats-inner{grid-template-columns:1fr 1fr}
+  .stat-item{border-right:none;border-bottom:1px solid rgba(255,255,255,.15)}
+  .stat-item:nth-child(odd){border-right:1px solid rgba(255,255,255,.15)}
+  .services-header{grid-template-columns:1fr}
+  .services-grid{grid-template-columns:1fr}
+  .gallery-masonry{grid-template-columns:1fr 1fr;grid-template-rows:auto}
+  .gallery-item:first-child{grid-row:span 1}
+  .process-grid{grid-template-columns:1fr 1fr;gap:24px}
+  .process-grid::before{display:none}
+  .reviews-header{flex-direction:column;align-items:flex-start}
+  .reviews-grid{grid-template-columns:1fr}
+  .about-inner{grid-template-columns:1fr}
+  .about-img-wrap{display:none}
+  .contacts-inner{grid-template-columns:1fr}
+  .contacts-map{height:260px}
+  .footer-inner{grid-template-columns:1fr}
+  .mobile-bar{display:flex}
+  body{padding-bottom:72px}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <div class="container nav-inner">
+    <a href="#" class="nav-logo"><span>MF Alberi</span</a>
+    <div class="nav-links">
+      <a href="#servizi">Servizi</a>
+      <a href="#lavori">I nostri lavori</a>
+      <a href="#recensioni">Recensioni</a>
+      <a href="#contatti">Contatti</a>
+    </div>
+    <a href="tel:3494780644" class="nav-cta">📞 Chiama ora</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-left reveal">
+      <div class="hero-eyebrow">Potatura Alberi · Milano</div>
+      <h1 class="hero-title">Potatura professionale e sicura</h1>
+      <p class="hero-sub">Esperti in potatura alberi a Milano — sicurezza e professionalità garantite.</p>
+      <div class="hero-ctas">
+        <a href="tel:3494780644" class="btn btn-primary">📞 Chiama ora</a>
+        <a href="https://wa.me/393494780644" target="_blank" class="btn btn-outline">💬 WhatsApp</a>
+      </div>
+      <div class="hero-trust">
+        <div class="hero-trust-stars">★★★★★</div>
+        <div class="hero-trust-text">
+          <strong>4.9 su 4 recensioni</strong>
+          Verificate su Google
+        </div>
+      </div>
+  </div>
+  <div class="hero-right">
+      <div class="hero-leaf"></div>
+      <div class="hero-leaf2"></div>
+      <div class="hero-img">
+        <img src="foto/foto1.jpg" alt="Giardiniere al lavoro" onerror="this.style.opacity=0;this.parentElement.style.background='linear-gradient(160deg,#1B4332 0%,#52B788 100%)'">
+        <div class="hero-img-overlay"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="container stats-inner">
+    <div class="stat-item reveal"><div class="stat-num">5★</div><div class="stat-lbl">Stelle Google</div></div>
+    <div class="stat-item reveal" style="transition-delay:.08s"><div class="stat-num">4</div><div class="stat-lbl">Recensioni</div></div>
+    
+    
+  </div>
+</div>
+
+<!-- SERVIZI -->
+<section class="section services" id="servizi">
+  <div class="container">
+    <div class="services-header">
+      <div>
+        <div class="tag reveal">Cosa facciamo</div>
+        <h2 class="h2 reveal">I nostri <em>servizi</em></h2>
+      </div>
+      <p class="sub reveal">Offriamo servizi professionali di potatura alberi a Milano. Ogni trattamento è personalizzato sulle tue esigenze.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card reveal">
+        <div class="service-num">01</div>
+        <div class="service-name">Servizio principale</div>
+        <div class="service-desc">Offriamo il servizio principale con professionalità e qualità garantita.</div>
+      </div>
+      <div class="service-card reveal" style="transition-delay:.06s">
+        <div class="service-num">02</div>
+        <div class="service-name">Consulenza gratuita</div>
+        <div class="service-desc">Preventivo e consulenza gratuita senza impegno. Contattaci oggi.</div>
+      </div>
+      <div class="service-card reveal" style="transition-delay:.12s">
+        <div class="service-num">03</div>
+        <div class="service-name">Pronto intervento</div>
+        <div class="service-desc">Disponibili per interventi urgenti. Risposta rapida e soluzione efficace.</div>
+      </div>
+      <div class="service-card reveal" style="transition-delay:.18s">
+        <div class="service-num">04</div>
+        <div class="service-name">Manutenzione</div>
+        <div class="service-desc">Servizi di manutenzione periodica per prevenire problemi e risparmiare.</div>
+      </div>
+      <div class="service-card reveal" style="transition-delay:.24s">
+        <div class="service-num">05</div>
+        <div class="service-name">Installazioni</div>
+        <div class="service-desc">Installazioni professionali con materiali certificati e garanzia sul lavoro.</div>
+      </div>
+      <div class="service-card reveal" style="transition-delay:.30s">
+        <div class="service-num">06</div>
+        <div class="service-name">Assistenza clienti</div>
+        <div class="service-desc">Supporto continuativo ai nostri clienti anche dopo la fine del lavoro.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERIA -->
+<section class="section gallery" id="lavori">
+  <div class="container">
+    <div class="gallery-header">
+      <h2 class="h2 reveal">I nostri lavori</h2>
+    </div>
+    <div class="gallery-masonry">
+      <div class="gallery-item reveal"><img src="foto/foto1.jpg" alt="Lavoro 1" onerror="this.style.background='#D8F3DC'"></div>
+      <div class="gallery-item reveal" style="transition-delay:.06s"><img src="foto/foto2.jpg" alt="Lavoro 2" onerror="this.style.background='#95D5B2'"></div>
+      <div class="gallery-item reveal" style="transition-delay:.12s"><img src="foto/foto3.jpg" alt="Lavoro 3" onerror="this.style.background='#52B788'"></div>
+      <div class="gallery-item reveal" style="transition-delay:.18s"><img src="foto/foto4.jpg" alt="Lavoro 4" onerror="this.style.background='#D8F3DC'"></div>
+      <div class="gallery-item reveal" style="transition-delay:.24s"><img src="foto/foto5.jpg" alt="Lavoro 5" onerror="this.style.background='#95D5B2'"></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESSO -->
+<section class="section process" id="processo">
+  <div class="container">
+    <div class="process-header">
+      <div class="tag reveal" style="justify-content:center">Come lavoriamo</div>
+      <h2 class="h2 reveal" style="text-align:center">Semplice e <em>trasparente</em></h2>
+    </div>
+    <div class="process-grid">
+      <div class="process-step reveal">
+        <div class="process-num">1</div>
+        <div class="process-title">Preventivo gratuito</div>
+        <div class="process-desc">Senza impegno e senza costi</div>
+      </div>
+      <div class="process-step reveal" style="transition-delay:.1s">
+        <div class="process-num">2</div>
+        <div class="process-title">Qualità garantita</div>
+        <div class="process-desc">Ricevi un preventivo dettagliato e trasparente. Nessuna sorpresa.</div>
+      </div>
+      <div class="process-step reveal" style="transition-delay:.2s">
+        <div class="process-num">3</div>
+        <div class="process-title">Lavoriamo per te</div>
+        <div class="process-desc">Il nostro team interviene nei tempi concordati con cura e precisione.</div>
+      </div>
+      <div class="process-step reveal" style="transition-delay:.3s">
+        <div class="process-num">4</div>
+        <div class="process-title">Prezzi trasparenti</div>
+        <div class="process-desc">Sei soddisfatto o risolviamo. La tua fiducia è la nostra priorità.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RECENSIONI -->
+<section class="section reviews" id="recensioni">
+  <div class="container">
+    <div class="reviews-header">
+      <div>
+        <div class="tag reveal">Cosa dicono di noi</div>
+        <h2 class="h2 reveal">Clienti <em>felici</em></h2>
+      </div>
+      <div class="reviews-score reveal">
+        <div class="reviews-score-num">5</div>
+        <div class="reviews-score-detail">
+          <div class="reviews-score-stars">★★★★★</div>
+          <div>4 recensioni Google</div>
+        </div>
+      </div>
+    </div>
+    <div class="reviews-grid">
+      <div class="review-card reveal">
+        <div class="review-quote">"</div>
+        <p class="review-text">“Matteo lavora con grande passione e competenza. Un tree climber che prende in considerazione sia le esigenze del cliente sia le necessità naturali della pianta, nel rispetto della natura. Molto disponibile,”</p>
+        <div class="review-footer">
+          <div><div class="review-author">Checco</div><div class="review-when">2 anni fa</div></div>
+          <div class="review-stars">★★★★★</div>
+        </div>
+      </div>
+      <div class="review-card reveal" style="transition-delay:.1s">
+        <div class="review-quote">"</div>
+        <p class="review-text">“Professionale, gentile e dedito al proprio lavoro che fa con passione, quest’ultima rivelata dalla qualità estrema del suo servizio. Consiglio vivamente per la salute e cura dei vostri alberi”</p>
+        <div class="review-footer">
+          <div><div class="review-author">Nura Mariasole Saccaro</div><div class="review-when">2 anni fa</div></div>
+          <div class="review-stars">★★★★★</div>
+        </div>
+      </div>
+      <div class="review-card reveal" style="transition-delay:.2s">
+        <div class="review-quote">"</div>
+        <p class="review-text">“Mi ha fatto la potatura di una magnolia, un cedro e l'abbattimento di un pino che si era danneggiato durante il nubifragio dell estate scorsa. Veloce competente ed efficente!”</p>
+        <div class="review-footer">
+          <div><div class="review-author">Elia Villa</div><div class="review-when">1 anno fa</div></div>
+          <div class="review-stars">★★★★★</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CHI SIAMO -->
+<section class="about" id="chi-siamo">
+  <div class="container about-inner">
+    <div class="about-img-wrap reveal">
+      <div class="about-img">
+        <img src="foto/foto2.jpg" alt="" onerror="this.parentElement.style.background='#2D6A4F'">
+      </div>
+    </div>
+    <div class="about-text">
+      <div class="tag reveal">Chi siamo</div>
+      <h2 class="h2 reveal">Qualità e affidabilità</h2>
+      <p class="sub reveal">Con esperienza e dedizione, offriamo servizi di qualità a prezzi onesti. Lavoriamo con materiali certificati e garantiamo ogni intervento. La fiducia dei nostri clienti è il nostro valore più grande.</p>
+      <div class="about-points" style="margin-top:28px">
+        <div class="about-point reveal" style="transition-delay:.12s">
+          <div class="about-point-check">✓</div>
+          <div><div class="about-point-title">Preventivo gratuito</div><div class="about-point-desc">Senza impegno e senza costi</div></div>
+        </div>
+        <div class="about-point reveal" style="transition-delay:.18s">
+          <div class="about-point-check">✓</div>
+          <div><div class="about-point-title">Qualità garantita</div><div class="about-point-desc">Lavoro certificato e garantito</div></div>
+        </div>
+        <div class="about-point reveal" style="transition-delay:.24s">
+          <div class="about-point-check">✓</div>
+          <div><div class="about-point-title">Puntualità</div><div class="about-point-desc">Rispettiamo sempre i tempi</div></div>
+        </div>
+        <div class="about-point reveal" style="transition-delay:.30s">
+          <div class="about-point-check">✓</div>
+          <div><div class="about-point-title">Prezzi trasparenti</div><div class="about-point-desc">Nessuna sorpresa in fattura</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTATTI -->
+<section class="section contacts" id="contatti">
+  <div class="container">
+    <div class="tag reveal">Dove siamo</div>
+    <h2 class="h2 reveal" style="margin-bottom:48px">Parliamo del<br>tuo progetto</h2>
+    <div class="contacts-inner">
+      <div class="contacts-info">
+        <div class="contact-block reveal">
+          <div class="contact-label">Telefono</div>
+          <div class="contact-value"><a href="tel:3494780644">349 478 0644</a></div>
+        </div>
+        <div class="contact-block reveal" style="transition-delay:.06s">
+          <div class="contact-label">WhatsApp</div>
+          <div class="contact-value"><a href="https://wa.me/393494780644" target="_blank">Scrivimi ora →</a></div>
+        </div>
+        <div class="contact-block reveal" style="transition-delay:.12s">
+          <div class="contact-label">Zona di intervento</div>
+          <div class="contact-value small">Milano e provincia<br>Disponibile anche per interventi fuori zona su richiesta</div>
+        </div>
+        <div class="contact-block reveal" style="transition-delay:.18s">
+          <div class="contact-label">Orari</div>
+          <div class="contact-value small">Lun – Ven: 8:30 – 18:30 · Sab: 8:30 – 13:00</div>
+        </div>
+        <div style="margin-top:28px" class="reveal" style="transition-delay:.24s">
+          <a href="tel:3494780644" class="btn btn-primary">📞 Chiamami per un preventivo gratuito</a>
+        </div>
+      </div>
+      <div class="contacts-map reveal" style="transition-delay:.2s">
+                    <iframe src="https://www.google.com/maps?q=Milano,Italia&output=embed&hl=it" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-inner">
+      <div>
+        <div class="footer-logo"><span>MF Alberi</span></div>
+        <p class="footer-desc">MF Alberi — servizi professionali a Milano. Qualità garantita e preventivo gratuito.</p>
+      </div>
+      <div>
+        <div class="footer-heading">Contatti</div>
+        <div class="footer-links">
+          <a href="tel:3494780644">📞 349 478 0644</a>
+          <a href="https://wa.me/393494780644" target="_blank">💬 WhatsApp</a>
+          <a>📍 Milano e provincia</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-heading">Servizi</div>
+        <div class="footer-links">
+          <a href="#servizi">Servizio principale</a>
+          <a href="#servizi">Consulenza gratuita</a>
+          <a href="#servizi">Pronto intervento</a>
+          <a href="#servizi">Manutenzione</a>
+          <a href="#servizi">Installazioni</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2026 MF Alberi. Tutti i diritti riservati.</div>
+      <div class="footer-legal"><a href="#">Privacy Policy</a><a href="#">Cookie Policy</a></div>
+    </div>
+  </div>
+</footer>
+
+<!-- MOBILE BAR -->
+<div class="mobile-bar">
+  <a href="tel:3494780644" class="mobile-bar-call">📞 Chiama</a>
+  <a href="https://wa.me/393494780644" target="_blank" class="mobile-bar-wa">💬 WhatsApp</a>
+</div>
+
+<!-- COOKIE -->
+<div class="cookie" id="cookie">
+  <span>Questo sito utilizza cookie tecnici. <a href="#" style="color:var(--green-mid)">Scopri di più</a></span>
+  <button class="cookie-btn" onclick="acceptCookie()">Accetta</button>
+</div>
+
+<script>
+const nav = document.getElementById('nav')
+window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 20))
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible') })
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' })
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el))
+
+function acceptCookie() {
+  localStorage.setItem('cookie_ok','1')
+  document.getElementById('cookie').classList.remove('show')
+}
+window.addEventListener('load', () => {
+  if(!localStorage.getItem('cookie_ok'))
+    setTimeout(() => document.getElementById('cookie').classList.add('show'), 1500)
+})
+
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const t = document.querySelector(a.getAttribute('href'))
+    if(t){ e.preventDefault(); t.scrollIntoView({behavior:'smooth'}) }
+  })
+})
+</script>
+</body>
+</html>
